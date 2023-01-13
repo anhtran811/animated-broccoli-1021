@@ -28,6 +28,9 @@ RSpec.describe 'Doctors show page' do
       visit "/doctors/#{meredith.id}"
 
       expect(page).to have_content(meredith.name)
+      expect(page).to have_content(meredith.specialty)
+      expect(page).to have_content(meredith.education)
+
       expect(page).to have_content(grey_sloan.name)
       expect(page).to have_content(katie.name)
       expect(page).to have_content(denny.name)
