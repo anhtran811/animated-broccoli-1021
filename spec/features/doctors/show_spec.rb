@@ -15,7 +15,8 @@ RSpec.describe 'Doctors show page' do
       grey_sloan = Hospital.create!(name: 'Grey Sloan Memorial Hospital')
     
       meredith = grey_sloan.doctors.create!(name: 'Meredith Grey', specialty: 'General Surgery', education: 'Harvard University')
-      
+      derek = grey_sloan.doctors.create!(name: 'Derek McDreamy Shepherd', specialty: 'Attending Surgeon', education: 'University of Pennsylvania')
+
       katie = Patient.create!(name: 'Katie Bryce', age: 24)
       denny = Patient.create!(name: 'Denny Duquette', age: 39)
       rebecca = Patient.create!(name: 'Rebecca Pope', age: 32)
@@ -28,6 +29,7 @@ RSpec.describe 'Doctors show page' do
       visit "/doctors/#{meredith.id}"
 
       expect(page).to have_content(meredith.name)
+      expect(page).to_not have_content(derek.name)
       expect(page).to have_content(meredith.specialty)
       expect(page).to have_content(meredith.education)
 
